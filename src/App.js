@@ -1,27 +1,23 @@
 import './App.css';
-import {Component} from "react/cjs/react.production.min";
+import {useState} from "react";
 import Vitrine from "./components/vitrine";
+import LoginForm from "./components/login";
+import SignInForm from "./components/signIn";
+import routes from "./routes/routes";
 
 
+function App() {
 
-class App extends Component{
-    constructor(props) {
-        super(props);
-    }
-
-    state = {
-        isAuth: false,
-    }
+    const [isAuth, setIsAuth] = useState(false)
 
 
+    return (
+        <div className="App">
+            {isAuth ? <LoginForm/> : <Vitrine/>}
+            {/*<SignInForm/>*/}
+        </div>
+    );
 
-    render(){
-        return (
-            <div className="App">
-                <Vitrine/>
-            </div>
-        );
-    }
 }
 
 export default App;
