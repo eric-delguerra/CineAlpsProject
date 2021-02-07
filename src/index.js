@@ -7,6 +7,7 @@ import 'semantic-ui-css/semantic.min.css'
 import {BrowserRouter as Router, Route} from "react-router-dom"
 import LoginForm from "./components/login";
 import SignInForm from "./components/signIn";
+import AdminHome from "./components/AdminPages"
 
 ReactDOM.render(
     <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
                 <Route exact path="/" component={App}/>
                 <Route exact path="/log" component={LoginForm}/>
                 <Route exact path="/sign" component={SignInForm}/>
+                <Route exact path="/adminPage" component={AdminHome}/>
             </div>
         </Router>
     </React.StrictMode>,
