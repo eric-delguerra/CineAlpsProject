@@ -1,5 +1,5 @@
 import Vitrine from "../components/vitrine";
-import LoginForm from "../components/login";
+import LoginForm from "../components/Login";
 import SignInForm from "../components/signIn";
 
 const routes = [

@@ -1,9 +1,8 @@
 import './App.css';
-import {useState} from "react";
+import { useState } from "react";
 import Vitrine from "./components/vitrine";
-import LoginForm from "./components/login";
+import LoginForm from "./components/Login";
 import SignInForm from "./components/signIn";
-import routes from "./routes/routes";
 
 
 function App() {

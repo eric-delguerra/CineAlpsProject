@@ -5,10 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
 import {BrowserRouter as Router, Route} from "react-router-dom"
-import LoginForm from "./components/login";
+import LoginForm from "./components/Login";
 import SignInForm from "./components/signIn";
 import AdminHome from "./components/AdminPages"
-import CreateUser from "./components/Uers/CreateUser";
+import CreateUser from "./components/Users/CreateUser";
 
 ReactDOM.render(
     <React.StrictMode>
