@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Container, Form} from 'semantic-ui-react'
+import '../../../styles/global.css'
 
 class CreateInvitation extends Component {
     state = {}
@@ -37,7 +38,7 @@ class CreateInvitation extends Component {
                             onChange={this.handleChange}
                         />
                     </Form.Group>
-                    <Form.Button>Submit</Form.Button>
+                    <Form.Button> Envoyer </Form.Button>
                 </Form>
             </Container>
         )

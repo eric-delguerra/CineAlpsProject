@@ -3,21 +3,25 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 import RandomizeColor from "../../service/RandomizeColor";
 
 const SignInForm = () => (
-    <Grid textAlign='center' style={{ height: '100vh', backgroundColor: '#f7f7f7' }} verticalAlign='middle'>
+    <Grid textAlign='center' style={{ height: '100vh', background: 'linear-gradient(#00003D 50%, #FF7C6A )'  }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color={RandomizeColor} textAlign='center'>
-                <Image src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png' /> Demandez un accès au festival
+            <Header as='h1' style={{color: '#FF7C6A'}} textAlign='center'>
+                 Demandez un accès au festival
             </Header>
             <Form size='large'>
                 <Segment stacked>
                     <Form.Input fluid icon='user' iconPosition='left' placeholder='Adresse mail' />
-                    <Button color={RandomizeColor} fluid size='large'>
+                    <Button style={{color: '#FF7C6A'}} fluid size='large'>
                         Je m'inscris
                     </Button>
+                    <div style={{marginTop: '1rem'}}>
+
+                        <a style={{color: '#FF7C6A', marginLeft: "60%"}} href='/log'>J'ai déjà un compte</a>
+                    </div>
                 </Segment>
             </Form>
             <Message>
-                Un mail contenant votre ticket d'entré vous sera envoyez prochainement
+                Un mail contenant votre ticket d'entré vous sera envoyez prochainement <br/>
             </Message>
         </Grid.Column>
     </Grid>

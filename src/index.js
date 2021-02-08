@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom"
 import LoginForm from "./components/login";
 import SignInForm from "./components/signIn";
 import AdminHome from "./components/AdminPages"
+import CreateUser from "./components/Uers/CreateUser";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -16,7 +17,8 @@ ReactDOM.render(
                 <Route exact path="/" component={App}/>
                 <Route exact path="/log" component={LoginForm}/>
                 <Route exact path="/sign" component={SignInForm}/>
-                <Route exact path="/adminPage" component={AdminHome}/>
+                <Route exact path="/adminpage" component={AdminHome}/>
+                <Route exact path="/newuser" component={CreateUser}/>
             </div>
         </Router>
     </React.StrictMode>,

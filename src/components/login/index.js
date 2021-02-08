@@ -1,12 +1,11 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import RandomizeColor from "../../service/RandomizeColor";
 
 const LoginForm = () => (
-    <Grid textAlign='center' style={{ height: '100vh', backgroundColor: '#f7f7f7' }} verticalAlign='middle'>
-        <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color={RandomizeColor} textAlign='center'>
-                <Image src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png' /> Suivez le tapis rouge
+    <Grid textAlign='center' style={{ height: '100vh', background: 'linear-gradient(#00003D 50%, #FF7C6A )' }} verticalAlign='middle'>
+        <Grid.Column style={{ maxWidth: 450}}>
+            <Header as='h1' style={{color: '#FF7C6A'}} textAlign='center'>
+                Votre ticket s'il vous plait
             </Header>
             <Form size='large'>
                 <Segment stacked>
@@ -19,13 +18,13 @@ const LoginForm = () => (
                         type='Mot de passe'
                     />
 
-                    <Button color={RandomizeColor} fluid size='large'>
+                    <Button style={{color: '#FF7C6A'}} fluid size='large'>
                         Connexion
                     </Button>
                 </Segment>
             </Form>
             <Message>
-                Vous voulez être membre du public ? <a href='/sign'>Contactez-nous</a>
+                Vous voulez être membre du public ? <a style={{color: '#FF7C6A'}} href='/sign'>Contactez-nous</a>
             </Message>
         </Grid.Column>
     </Grid>
