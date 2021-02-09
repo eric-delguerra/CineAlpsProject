@@ -9,6 +9,7 @@ import LoginForm from "./components/Login";
 import SignInForm from "./components/signIn";
 import AdminHome from "./components/AdminPages"
 import CreateUser from "./components/Users/CreateUser";
+import CreateParticipant from "./components/Users/CreateParticipant";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.render(
                 <Route exact path="/sign" component={SignInForm}/>
                 <Route exact path="/adminpage" component={AdminHome}/>
                 <Route exact path="/newuser" component={CreateUser}/>
+                <Route exact path="/newparticipant" component={CreateParticipant}/>
             </div>
         </Router>
     </React.StrictMode>,

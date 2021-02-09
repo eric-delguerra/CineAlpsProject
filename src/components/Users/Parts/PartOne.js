@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {Button, Form, Grid, Header, Image, Label, Message, Segment} from 'semantic-ui-react'
-import Footer from "../Footer/Footer";
-import validateMail from '../../service/validateMail'
+import Footer from "../../Footer/Footer";
+import validateMail from '../../../service/validateMail'
 
-
-const CreateUser = () => {
-
+const PartOne = (props) => {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [mail, setMail] = useState("")
@@ -15,7 +13,7 @@ const CreateUser = () => {
     const [mailCheck, setMailCheck] = useState(false)
 
     useEffect(() => {
-       //ca marche ici
+        //ca marche ici
     })
 
 
@@ -102,8 +100,8 @@ const CreateUser = () => {
                                 style={{marginBottom: "2rem"}}
                             />
 
-                            <Button style={{color: '#FF7C6A'}} fluid size='large' onClick={() => createUser()}>
-                                Inscription
+                            <Button style={{color: '#FF7C6A'}} fluid size='large' Icon onClick={() => props.OnNextStep()}>
+                                <i aria-hidden="true" class="arrow right icon"/>
                             </Button>
                         </Segment>
                     </Form>
@@ -117,17 +115,4 @@ const CreateUser = () => {
     )
 }
 
-const style = {
-    colorBefore: {
-        color: '#FFC46A',
-        transitionDuration: "0.5s"
-    },
-    colorHover: {
-        color: '#FF7C6A',
-        transitionDuration: "0.5s"
-    }
-}
-
-
-
-export default CreateUser
+export default PartOne
