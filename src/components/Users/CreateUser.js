@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {Button, Form, Grid, Header, Image, Label, Message, Segment} from 'semantic-ui-react'
 import Footer from "../Footer/Footer";
+import validateMail from '../../service/validateMail'
+
 
 const CreateUser = () => {
 
@@ -13,24 +15,34 @@ const CreateUser = () => {
     const [mailCheck, setMailCheck] = useState(false)
 
     useEffect(() => {
-        setTimeout(() => {
-            setFirstName("Truc")
-            console.log('timeout')
-        }, 1000)
+       //ca marche ici
     })
-    function validateEmail(email) {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
-    }
+
 
 
     function createUser() {
         if (firstName !== "" && lastName !== "" && mail !== "" && password !== "" && verifPassword !== "") {
-            if (validateEmail(mail)){
+            if (validateMail(mail)){
                 if (password !== verifPassword) {
                     setPasswordCheck(true)
                 } else {
-                    console.log("ca passe")
+                    fetch('http://192.168.0.31:7070/api/user/adduser', {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8",
+                        },
+                        body:
+                            JSON.stringify(
+                                {
+                                    "first_name": firstName,
+                                    "last_name": lastName,
+                                    "email": mail,
+                                    "password": password,
+                                    "phone_number": ""
+                                })
+                    })
+                        .then(res => console.log(res.json()))
+                        .catch(e => console.error(e))
                 }
             } else {
                 setMailCheck(true)

@@ -1,15 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Button, Checkbox, Form, Grid, Header, Image, Message, Modal, Segment} from 'semantic-ui-react'
 import Footer from "../Footer/Footer";
 import useHover from '@react-hook/hover'
+import validateMail from '../../service/validateMail'
 
 
 function reducer(state, action) {
     switch (action.type) {
         case 'OPEN_MODAL':
-            return { open: true, dimmer: action.dimmer }
+            return {open: true, dimmer: action.dimmer}
         case 'CLOSE_MODAL':
-            return { open: false }
+            return {open: false}
         default:
             throw new Error()
     }
@@ -22,7 +23,42 @@ const SignInForm = () => {
         open: false,
         dimmer: undefined,
     })
-    const { open, dimmer } = state
+    const [message, setMessage] = useState("")
+    const {open, dimmer} = state
+    const [mail, setMail] = useState("")
+    const [verifMail, setVerifMail] = useState(false)
+
+    function createInvit() {
+        if (validateMail(mail)) {
+            fetch('http://192.168.0.31:7070/api/invitation/addInvitationByMail', {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                },
+                body:
+                    JSON.stringify(
+                        {
+                            "email": mail,
+                        })
+            })
+                .then((res) => {
+                    return res.json()
+                })
+                .then((r) => {
+                    console.log(r)
+                    if (r.status === 'success') {
+                        setMessage("Vous recevrez un mail lorsque l'adminastrateur aura validé votre demande.")
+                        dispatch({type: 'OPEN_MODAL', dimmer: 'blurring'})
+                    } else {
+                        setMessage(r.message)
+                        dispatch({type: 'OPEN_MODAL', dimmer: 'blurring'})
+                    }
+                })
+                .catch(e => console.error(e))
+        } else {
+            setVerifMail(true)
+        }
+    }
 
     return (
         <div>
@@ -34,13 +70,21 @@ const SignInForm = () => {
                     </Header>
                     <Form size='large'>
                         <Segment stacked>
-                            <Form.Input fluid icon='user' iconPosition='left' placeholder='Adresse mail'/>
-                            <Button style={{color: '#FF7C6A'}} onClick={() => dispatch({ type: 'OPEN_MODAL', dimmer: 'blurring' })} fluid size='large'>
+                            <Form.Input error={verifMail}
+                                        fluid icon='user'
+                                        iconPosition='left'
+                                        placeholder='Adresse mail'
+                                        onChange={(e) => {
+                                            setVerifMail(false)
+                                            setMail(e.target.value)
+                                        }}
+                            />
+                            <Button style={{color: '#FF7C6A'}} onClick={() => createInvit()} fluid size='large'>
                                 Je m'inscris
                             </Button>
                             <div style={{marginTop: '1rem'}}>
-
-                                <a ref={target} style={isHovering ? style.colorBefore : style.colorHover} href='/log' >J'ai déjà un compte</a>
+                                <a ref={target} style={isHovering ? style.colorBefore : style.colorHover} href='/log'>J'ai
+                                    déjà un compte</a>
                             </div>
                         </Segment>
                     </Form>
@@ -54,15 +98,15 @@ const SignInForm = () => {
             <Modal
                 dimmer={dimmer}
                 open={open}
-                onClose={() => dispatch({ type: 'CLOSE_MODAL' })}
+                onClose={() => dispatch({type: 'CLOSE_MODAL'})}
                 style={{width: "55%"}}
             >
                 <Modal.Header>C'est enregistré !</Modal.Header>
                 <Modal.Content>
-                    Vous recevrez un mail lorsque l'adminastrateur aura validé votre demande.
+                    {message}
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button negative onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
+                    <Button negative onClick={() => dispatch({type: 'CLOSE_MODAL'})}>
                         Fermer
                     </Button>
                 </Modal.Actions>
