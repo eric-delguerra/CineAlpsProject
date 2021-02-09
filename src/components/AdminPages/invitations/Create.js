@@ -40,10 +40,8 @@ class CreateInvitation extends Component {
     }
 
     createInvite(){
-        console.log(this.state.role)
         if (this.state.first !== "" && this.state.last !== "" && this.state.role !== ""){
             if (validateEmail(this.state.mail)){
-
                 fetch('http://192.168.0.31:7070/api/invitation/addInvitation', {
                     method: "POST",
                     headers: {
@@ -55,7 +53,8 @@ class CreateInvitation extends Component {
                                 "first_name": this.state.first,
                                 "last_name": this.state.last,
                                 "email": this.state.mail,
-                                "role": this.state.role
+                                "role": this.state.role,
+                                "invited": 0
                             })
                 })
                     .then(res => {
@@ -68,7 +67,6 @@ class CreateInvitation extends Component {
                         }
                     })
                     .catch(e => console.error(e))
-
             } else {
                 this.setState({mailVerif: true})
             }
