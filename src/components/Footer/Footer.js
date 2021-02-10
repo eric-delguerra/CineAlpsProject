@@ -19,7 +19,7 @@ const Footer = () => {
             <div className="" style={{margin: 'auto', width: '50%', textAlign: 'center'}}>
                 <p style={{color: "#FF7C6A", paddingTop: "4%"}}>
                     •
-                    <a ref={target} href="/" style={isHovering ? style.colorBefore : style.colorHover} className="titleFooter">  Festival Multimedi'Alpes {year}  </a>
+                    <a ref={target} href="/" style={isHovering ? style.colorBefore : style.colorHover} className="titleFooter title">  Festival Multimedi'Alpes {year}  </a>
                     •
 
                     <i aria-hidden="true"

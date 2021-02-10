@@ -2,7 +2,7 @@ import RandomizeColor from "../../service/RandomizeColor";
 import {useState, useEffect} from "react";
 import Invits from "./invitations/InvitationList";
 import General from "./general";
-import FestivalHome from "./Festival";
+import FestivalHome from "./Gestion";
 
 
 

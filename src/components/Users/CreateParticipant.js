@@ -10,6 +10,8 @@ import PartTwo from "./Parts/PartTwo";
 const CreateUser = () => {
 
     const [step, setStep] = useState(1)
+    const [data, setData] = useState([])
+    let tab = []
 
     useEffect(() => {
         //ca marche ici
@@ -19,10 +21,27 @@ const CreateUser = () => {
         console.log("nextstep")
         setStep(2)
     }
+    function previousStep() {
+        console.log("nextstep")
+        setStep(1)
+    }
+
+    function saveData(data){
+        tab.push(data)
+        setData(tab)
+        console.log(data)
+    }
 
     return (
         <div>
-            { step === 1 ? <PartOne OnNextStep={nextStep} /> : <PartTwo /> }
+            { step === 1 ?
+                <PartOne OnNextStep={nextStep}
+                                    SaveData={(e) => saveData(e)}
+                                    data={data}/>
+                                    :
+                <PartTwo OnPreviousStep={previousStep}
+                         SaveData={(e) => saveData(e)}
+                /> }
         </div>
     )
 }

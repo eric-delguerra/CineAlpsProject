@@ -1,5 +1,7 @@
 import RandomizeColor from "../../../service/RandomizeColor";
 import {useState} from "react";
+import FestivalGestion from "./Festival";
+import GlobalAdministration from "./Administration";
 
 function FestivalHome() {
     const [menuNumber, setMenuNumber] = useState(0)
@@ -18,20 +20,6 @@ function FestivalHome() {
     )
 }
 
-const FestivalGestion = () => {
-    return (
-        <div>
-            <p>Gestion du festival</p>
-        </div>
-    )
-}
 
-const GlobalAdministration = () => {
-    return (
-        <div>
-            <p>Administration Globale</p>
-        </div>
-    )
-}
 
 export default FestivalHome

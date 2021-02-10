@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Button, Form, Grid, Header, Image, Label, Message, Segment} from 'semantic-ui-react'
 import Footer from "../../Footer/Footer";
 import validateMail from '../../../service/validateMail'
+import '../../../styles/global.css'
 
 const PartOne = (props) => {
     const [firstName, setFirstName] = useState("")
@@ -13,39 +14,30 @@ const PartOne = (props) => {
     const [mailCheck, setMailCheck] = useState(false)
 
     useEffect(() => {
-        //ca marche ici
+
     })
 
-
-
-    function createUser() {
-        if (firstName !== "" && lastName !== "" && mail !== "" && password !== "" && verifPassword !== "") {
-            if (validateMail(mail)){
-                if (password !== verifPassword) {
-                    setPasswordCheck(true)
+    function keepData() {
+        if (firstName !== "" && lastName !== "" && mail !== "" && password !== "") {
+            if (verifPassword !== "") {
+                if (validateMail(mail)) {
+                    if (password !== verifPassword) {
+                        setPasswordCheck(true)
+                    } else {
+                        let data = {
+                            first_name: firstName,
+                            last_name: lastName,
+                            email: mail,
+                            password: password,
+                            phone_number: ''
+                        }
+                        props.SaveData(data)
+                        props.OnNextStep()
+                    }
                 } else {
-                    fetch('http://192.168.0.31:7070/api/user/adduser', {
-                        method: "POST",
-                        headers: {
-                            "Content-type": "application/json; charset=UTF-8",
-                        },
-                        body:
-                            JSON.stringify(
-                                {
-                                    "first_name": firstName,
-                                    "last_name": lastName,
-                                    "email": mail,
-                                    "password": password,
-                                    "phone_number": ""
-                                })
-                    })
-                        .then(res => console.log(res.json()))
-                        .catch(e => console.error(e))
+                    setMailCheck(true)
                 }
-            } else {
-                setMailCheck(true)
             }
-
         }
     }
 
@@ -55,7 +47,7 @@ const PartOne = (props) => {
             <Grid textAlign='center' style={{height: '93vh', background: 'linear-gradient(#00003D 50%, #FF7C6A )'}}
                   verticalAlign='middle'>
                 <Grid.Column style={{maxWidth: 450}}>
-                    <Header as='h1' style={{color: '#FF7C6A'}} textAlign='center'>
+                    <Header as='h1' style={{color: '#FF7C6A'}} textAlign='center' className='title'>
                         Bienvenue
                     </Header>
                     <Form size='large'>
@@ -65,7 +57,8 @@ const PartOne = (props) => {
                                         onChange={(value) => setFirstName(value.target.value)}/>
                             <Form.Input fluid icon='user' label="Nom" iconPosition='left' placeholder='Nom'
                                         onChange={(value) => setLastName(value.target.value)} value={lastName}/>
-                            <Form.Input fluid icon='mail' type='mail' label="Mail" iconPosition='left' placeholder='Adresse mail'
+                            <Form.Input fluid icon='mail' type='mail' label="Mail" iconPosition='left'
+                                        placeholder='Adresse mail'
                                         onChange={(value) => {
                                             setMailCheck(false)
                                             setMail(value.target.value)
@@ -100,7 +93,9 @@ const PartOne = (props) => {
                                 style={{marginBottom: "2rem"}}
                             />
 
-                            <Button style={{color: '#FF7C6A'}} fluid size='large' Icon onClick={() => props.OnNextStep()}>
+                            <Button style={{color: '#FF7C6A'}} fluid size='large' Icon onClick={() => {
+                                keepData()
+                            }}>
                                 <i aria-hidden="true" class="arrow right icon"/>
                             </Button>
                         </Segment>

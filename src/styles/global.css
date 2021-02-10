@@ -2,3 +2,17 @@
     font-size: 1.2rem;
 }
 
+@font-face {
+    font-family: 'Galada';
+    src: url("./Fonts/Galada-Regular.ttf");
+}
+
+.title, h1 {
+    font-family: 'Galada', serif !important;
+}
+
+h1 {
+    font-size: 3rem !important;
+
+}
+
