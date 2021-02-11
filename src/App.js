@@ -3,6 +3,7 @@ import { useState } from "react";
 import Vitrine from "./components/vitrine";
 import LoginForm from "./components/Login";
 import SignInForm from "./components/signIn";
+import Home from "./components/Home/Home";
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
 
     return (
         <div className="App">
-            {isAuth ? <LoginForm/> : <Vitrine/>}
+            {isAuth ? <LoginForm/> : <Home/>}
             {/*<SignInForm/>*/}
         </div>
     );
