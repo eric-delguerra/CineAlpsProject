@@ -2,19 +2,23 @@ import React,{useState} from 'react'
 import {Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
 import Footer from "../Footer/Footer";
 import useHover from '@react-hook/hover'
+import { useHistory } from 'react-router-dom';
 
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    const history = useHistory();
     const target = React.useRef(null)
     const isHovering = useHover(target, {enterDelay: 0, leaveDelay: 0})
 
     const [mail, setMail] = useState("")
     const [password, setPassword] = useState("")
     const [userInfo, setUserInfo] = useState(null)
+    const [isAuthenticate, setIsAuthenticate] = useState(true)
+    const [isemptyInput, setisemptyInput] = useState(false)
 
     function connection(){
         if (mail !== "" && password !== ""){
-            fetch('http://192.168.0.31:7070/api/user/checkAuth', {
+            fetch('http://192.168.1.85:7070/api/user/checkAuth', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -31,13 +35,24 @@ const LoginForm = () => {
                 })
                 .then((e) => {
                     if (e.status === 'success'){
-                        localStorage.setItem('userInfo', JSON.stringify(e.result[0]))
-                        console.log(e)
+                        localStorage.setItem('userInfo', JSON.stringify(e))
+                       history.push(
+                            '/accueil',
+                            {state: e}
+                        )
+                    }else{
+                        setisemptyInput(false)
+                        setIsAuthenticate(false)
                     }
+                })
+                .catch(e => {
+                    console.error(e)
 
                 })
-                .catch(e => console.error(e))
 
+        }else{
+            setIsAuthenticate(true)
+            setisemptyInput(true)
         }
     }
 
@@ -61,6 +76,8 @@ const LoginForm = () => {
                                 placeholder='Mot de passe'
                                 type='password'
                             />
+                            {!isAuthenticate && <span style={{color:'red'}}>Identifiants incorrects</span>}
+                            {isemptyInput && <span style={{color:'red'}}> Veuillez renseiger vos indentifiants de connexion</span>}
                             <Button style={{color: '#FF7C6A', marginTop: '2rem'}} fluid size='large' onClick={() => connection()}>
                                 Connexion
                             </Button>

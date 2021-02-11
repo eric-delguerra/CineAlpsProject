@@ -12,8 +12,8 @@ function App() {
 
     return (
         <div className="App">
-            {isAuth ? <LoginForm/> : <Vitrine/>}
-            {/*<SignInForm/>*/}
+          <Vitrine/>
+
         </div>
     );
 
