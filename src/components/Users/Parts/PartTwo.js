@@ -25,7 +25,7 @@ const PartTwo = (props) => {
     const [category, setCategory] = useState("")
     const [categoryOptions, setCategoryOption] = useState([]);
     const [firstConnection, setFirstConnexion] = useState(true)
-    const [endCompletion, setendCompletion] = useState(false)
+    const [technique, setTechnique] = useState('')
 
     const onChange = (event, data) => {
         let t = new Date(data.value).toDateString()
@@ -89,7 +89,9 @@ const PartTwo = (props) => {
                 creation_date: currentDate,
                 category: category,
                 score: 0,
-                isVisible: 1
+                isVisible: 1,
+                poster: 'nom',
+                technique: technique
             }
             props.SaveData(data)
         }
@@ -160,6 +162,11 @@ const PartTwo = (props) => {
                                         label='Condition de réalisation'
                                         placeholder=''
                                         onChange={(e) => setCondition(e.target.value)}/>
+                            <Form.Input iconPosition='left'
+                                        icon='outline'
+                                        label='Technique de réalisation'
+                                        placeholder=''
+                                        onChange={(e) => setTechnique(e.target.value)}/>
 
                             <Button style={{color: '#FF7C6A', marginTop: "1rem"}}
                                     fluid size='large'

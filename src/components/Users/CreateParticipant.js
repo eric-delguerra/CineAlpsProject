@@ -48,14 +48,16 @@ const CreateUser = (props) => {
             tab = data[0]
             let result = {...tab, ...e}
             setData(result)
-            createNewParticipant()
+            createNewParticipant(result)
         } else {
             tab.push(e)
             setData(tab)
         }
     }
 
-    function createNewParticipant(){
+    function createNewParticipant(result){
+        console.log("DATAMERE")
+        console.log(data[0])
 
         fetch('http://192.168.0.31:7070/api/user/addUserMedia', {
             method: "POST",
@@ -63,13 +65,10 @@ const CreateUser = (props) => {
                 "Content-type": "application/json; charset=UTF-8",
             },
             body:
-                JSON.stringify(data)
+                JSON.stringify(result)
         })
             .then((res) => {
-                return res.json()
-            })
-            .then((r) => {
-
+                console.log(res)
             })
             .catch(e => console.error(e))
     }
