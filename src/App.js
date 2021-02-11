@@ -13,8 +13,7 @@ function App() {
 
     return (
         <div className="App">
-            {isAuth ? <LoginForm/> : <Home/>}
-            {/*<SignInForm/>*/}
+            <Home/>
         </div>
     );
 

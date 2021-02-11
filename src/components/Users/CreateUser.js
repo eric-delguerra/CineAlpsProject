@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import validateMail from '../../service/validateMail'
 
 
-const CreateUser = () => {
+const CreateUser = (props) => {
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -13,9 +13,22 @@ const CreateUser = () => {
     const [verifPassword, setVerifPassword] = useState("")
     const [passwordCheck, setPasswordCheck] = useState(false)
     const [mailCheck, setMailCheck] = useState(false)
+    const [firstConnection, setFirstConnection] = useState(true)
 
     useEffect(() => {
-       //ca marche ici
+        if (firstConnection) {
+            setFirstConnection(false)
+            fetch('http://192.168.0.31:7070/api/invitation/getInvitationId/' + props.match.params.id, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                }
+            }).then(res => {
+                return res.json()
+            }).then((res2) => {
+                setMail(res2.result[0].email)
+            }).catch(e => console.log(e))
+        }
     })
 
 

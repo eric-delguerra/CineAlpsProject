@@ -15,7 +15,7 @@ class ItemList extends Component {
 
     componentDidMount() {
         console.log('this.state.media')
-        fetch('http://192.168.1.85:7070/api/media/getAllMedias', {
+        fetch('http://'+ process.env.REACT_APP_IP + '/api/media/getAllMedias', {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

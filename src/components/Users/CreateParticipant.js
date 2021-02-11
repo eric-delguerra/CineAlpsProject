@@ -7,14 +7,31 @@ import '../../styles/animations.css'
 import PartTwo from "./Parts/PartTwo";
 
 
-const CreateUser = () => {
+const CreateUser = (props) => {
 
     const [step, setStep] = useState(1)
     const [data, setData] = useState([])
+    const [preloadData, setPreloadData] = useState(null)
+    const [firstConnection, setFirstConnection] = useState(true)
     let tab = []
 
     useEffect(() => {
-        //ca marche ici
+        console.log("DATA")
+        console.log(data)
+        if (firstConnection) {
+            setFirstConnection(false)
+            fetch('http://192.168.0.31:7070/api/invitation/getInvitationId/' + props.match.params.id, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                }
+            }).then(res => {
+                return res.json()
+            }).then((res2) => {
+                setPreloadData(res2.result[0])
+            }).catch(e => console.log(e))
+        }
+
     })
 
     function nextStep() {
@@ -22,14 +39,39 @@ const CreateUser = () => {
         setStep(2)
     }
     function previousStep() {
-        console.log("nextstep")
+        console.log("previousstep")
         setStep(1)
     }
 
-    function saveData(data){
-        tab.push(data)
-        setData(tab)
-        console.log(data)
+    function saveData(e){
+        if (data[0]){
+            tab = data[0]
+            let result = {...tab, ...e}
+            setData(result)
+            createNewParticipant()
+        } else {
+            tab.push(e)
+            setData(tab)
+        }
+    }
+
+    function createNewParticipant(){
+
+        fetch('http://192.168.0.31:7070/api/user/addUserMedia', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+            body:
+                JSON.stringify(data)
+        })
+            .then((res) => {
+                return res.json()
+            })
+            .then((r) => {
+
+            })
+            .catch(e => console.error(e))
     }
 
     return (
@@ -37,7 +79,9 @@ const CreateUser = () => {
             { step === 1 ?
                 <PartOne OnNextStep={nextStep}
                                     SaveData={(e) => saveData(e)}
-                                    data={data}/>
+                                    data={data}
+                                    preloadData={preloadData}
+                />
                                     :
                 <PartTwo OnPreviousStep={previousStep}
                          SaveData={(e) => saveData(e)}

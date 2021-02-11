@@ -14,7 +14,7 @@ const LoginForm = () => {
 
     function connection(){
         if (mail !== "" && password !== ""){
-            fetch('http://192.168.0.31:7070/api/user/checkAuth', {
+            fetch('http://'+ process.env.REACT_APP_IP + '/api/user/checkAuth', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",

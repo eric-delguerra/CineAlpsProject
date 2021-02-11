@@ -13,7 +13,6 @@ import Footer from "../../Footer/Footer";
 import '../../../styles/global.css'
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
-import validateMail from "../../../service/validateMail";
 
 
 const PartTwo = (props) => {
@@ -21,42 +20,61 @@ const PartTwo = (props) => {
     const [description, setDescription] = useState("")
     const [currentDate, setNewDate] = useState(null);
     const [link, setLink] = useState("")
-    const [link2, setLink2] = useState("")
+    const [poster, setPoster] = useState("")
     const [condition, setCondition] = useState("")
     const [category, setCategory] = useState("")
-
-
     const [categoryOptions, setCategoryOption] = useState([]);
     const [firstConnection, setFirstConnexion] = useState(true)
+    const [endCompletion, setendCompletion] = useState(false)
 
-    const onChange = (event, data) => setNewDate(data.value);
+    const onChange = (event, data) => {
+        let t = new Date(data.value).toDateString()
+        console.log(formatDate(t))
+        setNewDate(data.value)
+    };
 
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
 
     useEffect(() => {
-        fetch('http://192.168.0.31:7070/api/category/getAllCategories', {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            }
-        })
-            .then(res => {
-                return res.json()
-            })
-            .then((e) => {
-                if (e.status === 'success' && firstConnection) {
-                    console.log(e.result)
-                    let tab = []
-
-                    for (let i = 0; i < e.result.length; i++) {
-                        tab.push({key: e.result[i].id, text: e.result[i].name, value: e.result[i].name})
-                    }
-                    console.log(tab)
-                    setCategoryOption(tab)
-                    console.log(categoryOptions)
-                    setFirstConnexion(false)
+        if (firstConnection) {
+            setFirstConnexion(false)
+            fetch('http://192.168.0.31:7070/api/category/getAllCategories', {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
                 }
             })
-            .catch(e => console.error(e))
+                .then(res => {
+                    return res.json()
+                })
+                .then((e) => {
+                    if (e.status === 'success') {
+                        console.log(e.result)
+                        let tab = []
+
+                        for (let i = 0; i < e.result.length; i++) {
+                            tab.push({key: e.result[i].id, text: e.result[i].name, value: e.result[i].name})
+                        }
+                        console.log(tab)
+                        setCategoryOption(tab)
+                        console.log(categoryOptions)
+                    }
+                })
+                .catch(e => console.error(e))
+
+        }
 
     })
 
@@ -64,17 +82,25 @@ const PartTwo = (props) => {
         if (name !== "" && description !== "" && currentDate !== "" && link !== "" && condition !== "" && category !== "") {
 
             let data = {
-                name: name,
-                dascription: description,
+                mediaName: name,
+                description: description,
                 link: link,
-                condition: condition,
-                date_realisation: currentDate,
+                realisationCondition: condition,
+                creation_date: currentDate,
                 category: category,
+                score: 0,
+                isVisible: 1
             }
             props.SaveData(data)
         }
     }
 
+    function storePoster(e) {
+        const file = e.target.files[0];
+        const newImages = [];
+        newImages.push(file);
+        setPoster(file)
+    }
 
     return (
         <div>
@@ -106,6 +132,7 @@ const PartTwo = (props) => {
                                            value={description}/>
 
                             <SemanticDatepicker onChange={onChange}
+                                                datePickerOnly={true}
                                                 label='Date de réalisation'
                                                 locale='fr-FR'
                                                 format='DD-MM-YYYY'
@@ -118,15 +145,26 @@ const PartTwo = (props) => {
                                        <Form.Input fluid iconPosition='left' icon='youtube' label='Liens'
                                                    placeholder='youtube.com' onChange={(e) => setLink(e.target.value)}/>
                                    }/>
-                            <Form.Input iconPosition='left' icon='video' placeholder='vimeo.com'
-                                        onChange={(e) => setLink2(e.target.value)}/>
+                            <Form.Input
+                                label='Affiche'
+                                iconPosition='left'
+                                icon='file'
+                                type='file'
+                                accept="image/*"
+                                onChange={(e) => storePoster(e)}
+                                style={{color: 'red'}}
+                            />
 
-                            <Form.Input iconPosition='left' icon='outline' label='Condition de réalisation'
-                                        placeholder='' onChange={(e) => setCondition(e.target.value)}/>
+                            <Form.Input iconPosition='left'
+                                        icon='outline'
+                                        label='Condition de réalisation'
+                                        placeholder=''
+                                        onChange={(e) => setCondition(e.target.value)}/>
 
-
-                            <Button style={{color: '#FF7C6A', marginTop: "1rem"}} fluid size='large'
-                                    onClick={keepData()}>
+                            <Button style={{color: '#FF7C6A', marginTop: "1rem"}}
+                                    fluid size='large'
+                                    onClick={() => keepData()}
+                            >
                                 Inscription
                             </Button>
                         </Segment>

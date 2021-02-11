@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Button, Form, Grid, Header, Image, Label, Message, Segment} from 'semantic-ui-react'
+import {Button, Form, Grid, Header, Message, Segment} from 'semantic-ui-react'
 import Footer from "../../Footer/Footer";
 import validateMail from '../../../service/validateMail'
 import '../../../styles/global.css'
@@ -12,9 +12,15 @@ const PartOne = (props) => {
     const [verifPassword, setVerifPassword] = useState("")
     const [passwordCheck, setPasswordCheck] = useState(false)
     const [mailCheck, setMailCheck] = useState(false)
+    const [firstConnection, setFirstConnection] = useState(true)
 
     useEffect(() => {
-
+        if (props.preloadData !== null && firstConnection){
+            setFirstConnection(false)
+            setMail(props.preloadData.email)
+            setFirstName(props.preloadData.first_name)
+            setLastName(props.preloadData.last_name)
+        }
     })
 
     function keepData() {
@@ -29,7 +35,8 @@ const PartOne = (props) => {
                             last_name: lastName,
                             email: mail,
                             password: password,
-                            phone_number: ''
+                            phone_number: '',
+                            role: 3
                         }
                         props.SaveData(data)
                         props.OnNextStep()
@@ -96,7 +103,7 @@ const PartOne = (props) => {
                             <Button style={{color: '#FF7C6A'}} fluid size='large' Icon onClick={() => {
                                 keepData()
                             }}>
-                                <i aria-hidden="true" class="arrow right icon"/>
+                                <i aria-hidden="true" className="arrow right icon"/>
                             </Button>
                         </Segment>
                     </Form>

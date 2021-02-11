@@ -23,10 +23,8 @@ ReactDOM.render(
                 <Route exact path="/log" component={LoginForm}/>
                 <Route exact path="/sign" component={SignInForm}/>
                 <Route exact path="/adminpage" component={AdminHome}/>
-                <Route exact path="/newuser" component={CreateUser}/>
-
-                <Route exact path="/newparticipant" component={CreateParticipant}/>
-
+                <Route exact path="/newuser/:id" component={CreateUser}/>
+                <Route exact path="/newparticipant/:id" component={CreateParticipant}/>
                 <Route exact path="/listitems" component={ItemList}/>
 
             </div>
