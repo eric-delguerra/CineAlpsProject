@@ -14,7 +14,6 @@ import {
 } from 'semantic-ui-react'
 import Footer from "../Footer/Footer";
 import {DesktopContainer} from "../Menu/Menu";
-import '../../styles/global.css';
 import List from "semantic-ui-react/dist/commonjs/elements/List";
 
 const {MediaContextProvider, Media} = createMedia({

@@ -26,6 +26,10 @@ const CreateUser = (props) => {
             }).then(res => {
                 return res.json()
             }).then((res2) => {
+                if (res2.result[0].last_name && res2.result[0].first_name) {
+                    setLastName(res2.result[0].last_name)
+                    setFirstName(res2.result[0].first_name)
+                }
                 setMail(res2.result[0].email)
             }).catch(e => console.log(e))
         }
