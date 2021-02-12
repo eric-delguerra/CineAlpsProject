@@ -10,7 +10,7 @@ function Invits() {
     const [watcher, setWatcher] = useState(true)
 
     useEffect(() => {
-        fetch('http://192.168.0.31:7070/api/invitation/getAllInvitation', {
+        fetch('http://192.168.1.85:7070/api/invitation/getAllInvitation', {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

@@ -10,16 +10,16 @@ class ItemList extends Component {
             media: [],
             modaleDescription: false,
             itemSelected: {},
-            userHasVoted:false,
-            modaleVoted:false
+            userHasVoted: false,
+            modaleVoted: false
         }
     }
 
     componentDidMount() {
         console.log(this.props.user.asVoted)
-        if(this.props.user.asVoted !==0){
-            this.setState({userHasVoted:true})
-        }else{
+        if (this.props.user.asVoted !== 0) {
+            this.setState({userHasVoted: true})
+        } else {
 
         }
         console.log('this.state.media')
@@ -39,11 +39,11 @@ class ItemList extends Component {
         this.setState({itemSelected: item, modaleDescription: true})
     }
 
-    formateString=(str)=>{
+    formateString = (str) => {
 
-        if(str && str.length > 50){
-            str = str.substring(0,50);
-            str+= "..."
+        if (str && str.length > 50) {
+            str = str.substring(0, 50);
+            str += "..."
         }
         return str
 
@@ -70,12 +70,12 @@ class ItemList extends Component {
                         {row.map(item => <Grid.Column key={item.id}>
                             <div style={{margin: 'auto'}}>
                                 <Card style={{margin: 'auto'}} onClick={() => this.OpenDescription(item)}>
-                                    <Image style={{height:'400px'}} src={item.poster} />
+                                    <Image style={{height: '400px'}} src={item.poster}/>
                                     <Card.Content>
                                         <Card.Header>{item.name}</Card.Header>
                                         <Card.Meta>
                                         </Card.Meta>
-                                        <Card.Description style={{minHeight:'50px'}}>
+                                        <Card.Description style={{minHeight: '50px'}}>
                                             {this.formateString(item.description)}
                                         </Card.Description>
                                     </Card.Content>
@@ -95,10 +95,10 @@ class ItemList extends Component {
 
         }
     }
-    addVote=(filmId,userId)=>{
-        console.log('film: '+filmId)
-        console.log('userId: ' +userId)
-        fetch('http://192.168.1.85:7070/api/media/addVoteToMedia/'+ filmId, {
+    addVote = (filmId, userId) => {
+        console.log('film: ' + filmId)
+        console.log('userId: ' + userId)
+        fetch('http://192.168.1.85:7070/api/media/addVoteToMedia/' + filmId, {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -111,12 +111,16 @@ class ItemList extends Component {
                     })
         })
             .then(res => {
-                this.setState({userHasVoted:true,modaleVoted:true},()=>{this.props.user.hasVoted=1})
+                this.setState({userHasVoted: true, modaleVoted: true}, () => {
+                    this.props.user.hasVoted = 1
+                })
 
             }).catch(e => {
+
             console.error(e)
 
         })
+
     }
 
 

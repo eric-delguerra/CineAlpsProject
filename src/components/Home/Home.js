@@ -15,79 +15,10 @@ import Footer from "../Footer/Footer";
 import { DesktopContainer } from "../Menu/Menu";
 import '../../styles/global.css';
 
-const { MediaContextProvider, Media } = createMedia({
-    breakpoints: {
-        mobile: 0,
-        tablet: 768,
-        computer: 1024,
-    },
-});
-
-const ResponsiveContainer = ({ children }) => (
-
-    <MediaContextProvider>
-        <DesktopContainer>{children}</DesktopContainer>
-        {/*<MobileContainer>{children}</MobileContainer>*/}
-    </MediaContextProvider>
-);
-
-ResponsiveContainer.propTypes = {
-    children: PropTypes.node,
-};
-
-
-
-
 const Home = () => {
 
-// Update the count down every 1 second
-
-// Set the date we're counting down to
-    const countDownDate = new Date("Apr 15, 2021 00:00:00").getTime();
-    const x = setInterval(function () {
-
-        // Get today's date and time
-        const now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        const distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="countdown"
-        if(days > 10) {
-            document.getElementById("countdown").innerHTML = `J - ${days}`;
-            document.getElementById("days-container").hidden = true;
-            document.getElementById("hours-container").hidden = true;
-            document.getElementById("minutes-container").hidden = true;
-            document.getElementById("seconds-container").hidden = true;
-
-        } else {
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
-            document.getElementById("countdown-container").hidden = true;
-            document.getElementById("days-container").hidden = false;
-            document.getElementById("hours-container").hidden = false;
-            document.getElementById("minutes-container").hidden = false;
-            document.getElementById("seconds-container").hidden = false;
-        }
-
-
-        // If the count down is finished, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("countdown").innerHTML = "EXPIRED";
-        }
-    }, 1000);
-
     return (
-        <ResponsiveContainer>
+        <div>
             <Segment style={{ padding: '8em 0em', background: 'linear-gradient( 0deg, rgba(255,255,255,1) 0%, rgba(255,124,106,1) 100% )'}} vertical>
                 <Grid container stackable verticalAlign='middle'>
                     <Grid.Row centered>
@@ -172,7 +103,7 @@ const Home = () => {
                 </Grid>
             </Segment>
             <Footer/>
-        </ResponsiveContainer>
+        </div>
     )
 }
 

@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
-import {BrowserRouter as Router, Route} from "react-router-dom"
+import {BrowserRouter as Router, Route,Switch} from "react-router-dom"
 import LoginForm from "./components/Login";
 import SignInForm from "./components/signIn";
 import AdminHome from "./components/AdminPages"
@@ -16,20 +16,17 @@ import ItemList from './components/vitrine/itemList'
 
 
 ReactDOM.render(
-    <React.StrictMode>
+
         <Router>
-            <div>
-                <Route exact path="/" component={App}/>
+                <Route exact path="/" component={LoginForm}/>
                 <Route exact path="/log" component={LoginForm}/>
-                <Route exact path="/sign" component={SignInForm}/>
+                <Route exact path="/accueil" component={App}/>
                 <Route exact path="/adminpage" component={AdminHome}/>
                 <Route exact path="/newuser/:id" component={CreateUser}/>
                 <Route exact path="/newparticipant/:id" component={CreateParticipant}/>
                 <Route exact path="/listitems" component={ItemList}/>
-
-            </div>
-        </Router>
-    </React.StrictMode>,
+                <Route exact path="/sign" component={SignInForm}/>
+        </Router>,
     document.getElementById('root')
 );
 
