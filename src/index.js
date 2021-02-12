@@ -13,6 +13,7 @@ import CreateUser from "./components/Users/CreateUser";
 import CreateParticipant from "./components/Users/CreateParticipant";
 
 import ItemList from './components/vitrine/itemList'
+import Rules from "./components/Rules/Rules";
 
 
 ReactDOM.render(
@@ -26,6 +27,7 @@ ReactDOM.render(
                 <Route exact path="/newparticipant/:id" component={CreateParticipant}/>
                 <Route exact path="/listitems" component={ItemList}/>
                 <Route exact path="/sign" component={SignInForm}/>
+                <Route exact path="/reglement" component={Rules}/>
         </Router>,
     document.getElementById('root')
 );

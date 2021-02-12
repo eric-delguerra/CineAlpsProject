@@ -49,6 +49,7 @@ class ItemList extends Component {
 
     }
     buildGrid = () => {
+
         if (this.state.media) {
             let typeCopy = [...this.state.media]
             let gridArray = []
@@ -70,7 +71,7 @@ class ItemList extends Component {
                         {row.map(item => <Grid.Column key={item.id}>
                             <div style={{margin: 'auto'}}>
                                 <Card style={{margin: 'auto'}} onClick={() => this.OpenDescription(item)}>
-                                    <Image style={{height: '400px'}} src={item.poster}/>
+                                    <Image style={{height: '400px',objectFit:'cover'}} src={item.poster}/>
                                     <Card.Content>
                                         <Card.Header>{item.name}</Card.Header>
                                         <Card.Meta>

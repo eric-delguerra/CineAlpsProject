@@ -19,7 +19,7 @@ class CreateInvitation extends Component {
 
     componentDidMount() {
         if (this.state.firstConnection) {
-            fetch('http://192.168.0.31:7070/api/role/getAllRoles', {
+            fetch('http://192.168.1.85:7070/api/role/getAllRoles', {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -42,7 +42,7 @@ class CreateInvitation extends Component {
     createInvite(){
         if (this.state.first !== "" && this.state.last !== "" && this.state.role !== ""){
             if (validateEmail(this.state.mail)){
-                fetch('http://192.168.0.31:7070/api/invitation/addInvitation', {
+                fetch('http://192.168.1.85:7070/api/invitation/addInvitation', {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json; charset=UTF-8",

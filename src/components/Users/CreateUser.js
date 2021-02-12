@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Button, Form, Grid, Header, Image, Label, Message, Segment} from 'semantic-ui-react'
 import Footer from "../Footer/Footer";
 import validateMail from '../../service/validateMail'
+import {useHistory} from "react-router-dom";
 
 
 const CreateUser = (props) => {
@@ -18,7 +19,7 @@ const CreateUser = (props) => {
     useEffect(() => {
         if (firstConnection) {
             setFirstConnection(false)
-            fetch('http://192.168.0.31:7070/api/invitation/getInvitationId/' + props.match.params.id, {
+            fetch('http://192.168.1.85:7070/api/invitation/getInvitationId/' + props.match.params.id, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -26,12 +27,16 @@ const CreateUser = (props) => {
             }).then(res => {
                 return res.json()
             }).then((res2) => {
+                if (res2.result[0].last_name && res2.result[0].first_name) {
+                    setLastName(res2.result[0].last_name)
+                    setFirstName(res2.result[0].first_name)
+                }
                 setMail(res2.result[0].email)
             }).catch(e => console.log(e))
         }
     })
 
-
+    const history = useHistory()
 
     function createUser() {
         if (firstName !== "" && lastName !== "" && mail !== "" && password !== "" && verifPassword !== "") {
@@ -39,7 +44,7 @@ const CreateUser = (props) => {
                 if (password !== verifPassword) {
                     setPasswordCheck(true)
                 } else {
-                    fetch('http://192.168.0.31:7070/api/user/adduser', {
+                    fetch('http://192.168.1.85:7070/api/user/adduser', {
                         method: "POST",
                         headers: {
                             "Content-type": "application/json; charset=UTF-8",
@@ -54,7 +59,10 @@ const CreateUser = (props) => {
                                     "phone_number": ""
                                 })
                     })
-                        .then(res => console.log(res.json()))
+                        .then(res => { history.push(
+                            '/accueil'
+
+                        )})
                         .catch(e => console.error(e))
                 }
             } else {

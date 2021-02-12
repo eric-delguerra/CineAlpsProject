@@ -20,6 +20,7 @@ import Footer from '../Footer/Footer'
 import ListItem from '../vitrine/itemList'
 import AdminPage from '../AdminPages/index'
 import Home from '../Home/Home'
+import Rules from '../Rules/Rules'
 
 const {MediaContextProvider, Media} = createMedia({
     breakpoints: {
@@ -182,6 +183,7 @@ class DesktopContainer extends Component {
                 {this.state.listFilm && <ListItem user={this.state.user.result}/>}
                 {this.state.viewAdmin && <AdminPage/>}
                 {this.state.apropos && <Home/>}
+                {this.state.reglement && <Rules/>}
             </Media>
         )
     }

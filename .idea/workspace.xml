@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="295a6df7-a130-4fe9-a0e4-fae8f42476ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Rules/Rules.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminPages/Gestion/Administration/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminPages/Gestion/Administration/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminPages/invitations/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminPages/invitations/Create.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AdminPages/invitations/InvitationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminPages/invitations/InvitationList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/CreateParticipant.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/CreateParticipant.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/CreateUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/CreateUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/Parts/PartTwo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/Parts/PartTwo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/signIn/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/signIn/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/vitrine/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/vitrine/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/vitrine/itemList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/vitrine/itemList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />

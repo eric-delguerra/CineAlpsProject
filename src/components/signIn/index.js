@@ -30,7 +30,7 @@ const SignInForm = () => {
 
     function createInvit() {
         if (validateMail(mail)) {
-            fetch('http://192.168.0.31:7070/api/invitation/addInvitationByMail', {
+            fetch('http://192.168.1.85:7070/api/invitation/addInvitationByMail', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",

@@ -20,7 +20,7 @@ const CreateUser = (props) => {
         console.log(data)
         if (firstConnection) {
             setFirstConnection(false)
-            fetch('http://192.168.0.31:7070/api/invitation/getInvitationId/' + props.match.params.id, {
+            fetch('http://192.168.1.85:7070/api/invitation/getInvitationId/' + props.match.params.id, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -59,7 +59,7 @@ const CreateUser = (props) => {
         console.log("DATAMERE")
         console.log(data[0])
 
-        fetch('http://192.168.0.31:7070/api/user/addUserMedia', {
+        fetch('http://192.168.1.85:7070/api/user/addUserMedia', {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

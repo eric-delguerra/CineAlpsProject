@@ -50,7 +50,7 @@ const PartTwo = (props) => {
     useEffect(() => {
         if (firstConnection) {
             setFirstConnexion(false)
-            fetch('http://192.168.0.31:7070/api/category/getAllCategories', {
+            fetch('http://192.168.1.85:7070/api/category/getAllCategories', {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
