@@ -9,13 +9,21 @@ class ItemList extends Component {
         this.state = {
             media: [],
             modaleDescription: false,
-            itemSelected: {}
+            itemSelected: {},
+            userHasVoted:false,
+            modaleVoted:false
         }
     }
 
     componentDidMount() {
+        console.log(this.props.user.asVoted)
+        if(this.props.user.asVoted !==0){
+            this.setState({userHasVoted:true})
+        }else{
+
+        }
         console.log('this.state.media')
-        fetch('http://'+ process.env.REACT_APP_IP + '/api/media/getAllMedias', {
+        fetch('http://192.168.1.85:7070/api/media/getAllMedias', {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -87,12 +95,28 @@ class ItemList extends Component {
 
         }
     }
-    iframe=(link)=>{
-        return (
-            <iframe width="560" height="315"
-                    src={link} frameBorder="0"
-                    allowFullScreen></iframe>
-        )
+    addVote=(filmId,userId)=>{
+        console.log('film: '+filmId)
+        console.log('userId: ' +userId)
+        fetch('http://192.168.1.85:7070/api/media/addVoteToMedia/'+ filmId, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+            body:
+                JSON.stringify(
+                    {
+                        "idUser": userId,
+
+                    })
+        })
+            .then(res => {
+                this.setState({userHasVoted:true,modaleVoted:true},()=>{this.props.user.hasVoted=1})
+
+            }).catch(e => {
+            console.error(e)
+
+        })
     }
 
 
@@ -111,16 +135,17 @@ class ItemList extends Component {
                     <Modal.Content>
 
 
-                                <Embed
-                                    icon='right circle arrow'
-                                    source={"youtube"}
-                                    iframe={this.iframe(itemSelected.link)}
-                                />
+                        <ReactPlayer
+                            url={itemSelected.link}
+                        />
 
-                            <div style={{margin: 'auto', alignItems: 'center'}}>
-                                <Button color="violet">
-                                    Je vote pour cette oeuvre
-                                </Button>
+                        <div style={{margin: 'auto', alignItems: 'center'}}>
+                            {!this.state.userHasVoted &&
+                            <Button color="violet"
+                                    onClick={() => this.addVote(itemSelected.id_media, this.props.user.id)}>
+                                Je vote pour cette oeuvre
+                            </Button>
+                            }
 
 
                         </div>
@@ -132,8 +157,29 @@ class ItemList extends Component {
 
                     </Modal.Content>
                     <Modal.Actions>
+
                         <Button onClick={() => this.setState({modaleDescription: false})} color="violet" primary>
                             Fermer <Icon name='chevron right'/>
+                        </Button>
+
+
+                    </Modal.Actions>
+                </Modal>
+
+
+                <Modal
+                    open={this.state.modaleVoted}
+                    onClose={() => this.setState({modaleVoted: false})}
+                    onOpen={() => this.setState({modaleVoted: true})}
+                >
+                    <Modal.Header>{itemSelected.name}</Modal.Header>
+                    <Modal.Content>
+                        <p>Votre vote à ben été pris en compte</p>
+                        <p>Merci d'avoir voté</p>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button onClick={() => this.setState({modaleVoted: false})} color="violet" primary>
+                            ok <Icon name='chevron right'/>
                         </Button>
                     </Modal.Actions>
                 </Modal>
