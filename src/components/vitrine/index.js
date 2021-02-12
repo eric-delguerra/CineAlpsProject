@@ -214,7 +214,7 @@ const Vitrine = () => (
                         <p style={{ fontSize: '1.33em' }}>
                             <Image avatar src='/images/avatar/large/nan.jpg' />
                             <b>Nan</b> Chief Fun Officer Acme Toys
-                        </p>
+                        </p>git add .
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
