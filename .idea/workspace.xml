@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="547b4e0f-afa2-414b-ba09-87ec08f36f97" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
@@ -11,6 +12,9 @@
       <change beforePath="$PROJECT_DIR$/src/components/vitrine/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/vitrine/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/vitrine/itemList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/vitrine/itemList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,10 +35,16 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev_sam" />
+        <entry key="$PROJECT_DIR$" value="saveBranch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectId" id="1oEr0sSlDSTZf6F2wVyDk58Nc8w" />
   <component name="ProjectViewState">
@@ -51,7 +61,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< Updated upstream
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Applications_2019-2020/ApiProject/agiweb_etablissement_application_API_REST" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> Stashed changes
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -68,8 +82,13 @@
       <option name="presentableId" value="Default" />
       <updated>1612862371498</updated>
       <workItem from="1612862375417" duration="10773000" />
+<<<<<<< Updated upstream
       <workItem from="1612942943358" duration="18972000" />
       <workItem from="1613027560602" duration="35252000" />
+=======
+      <workItem from="1612942943358" duration="18271000" />
+      <workItem from="1613114740419" duration="1348000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
